@@ -45,3 +45,7 @@ table {
 * {
     box-sizing: border-box;
 }
+body {
+    font-family: 'Lexend Deca', sans-serif;
+/*     font-family: 'Playball', cursive; */
+}
