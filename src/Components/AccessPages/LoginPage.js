@@ -20,6 +20,7 @@ export default function LoginPage() {
       <img className="logo" src={logo} alt="TrackIt" />
       <Form onSubmit={handleLogin} disabled={disabled}>
         <input
+          required
           disabled={disabled}
           type="email"
           placeholder="email"
@@ -27,6 +28,7 @@ export default function LoginPage() {
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          required
           disabled={disabled}
           type="password"
           placeholder="senha"
