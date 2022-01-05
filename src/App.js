@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./AccessPages/LoginPage";
-import SignUpPage from "./AccessPages/SignUpPage";
+import LoginPage from "./Components/AccessPages/LoginPage";
+import SignUpPage from "./Components/AccessPages/SignUpPage";
 
 import "./styles/reset.css"
 

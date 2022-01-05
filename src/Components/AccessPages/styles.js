@@ -34,14 +34,16 @@ const Form = styled.form`
     margin-bottom: 6px;
     padding: 10px;
 
-    background: #ffffff;
+    background: ${(props) => props.disabled ? "#F2F2F2": "#ffffff"};
     border: 1px solid #d5d5d5;
     border-radius: 5px;
 
+    ${(props) => props.disabled && "color: #AFAFAF"};
+    font-size: 20px;
+    line-height: 25px;
+
     ::placeholder {
       color: #dbdbdb;
-      font-size: 20px;
-      line-height: 25px;
     }
   }
 
@@ -58,6 +60,7 @@ const Form = styled.form`
     background-color: #52b6ff;
     border: none;
     border-radius: 5px;
+    ${(props) => props.disabled && "opacity: 0.7;" }
 
     color: #ffffff;
     font-size: 21px;
