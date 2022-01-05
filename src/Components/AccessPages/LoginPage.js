@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Container, StyledLink } from "./styles";
 
 import logo from "../../assets/logo.svg";
 import Loading from "../Loading/Loading";
+import UserContext from "../Contexts/UserContext";
 
-export default function LoginPage({ setUserData, userData }) {
+export default function LoginPage() {
+  const {userData, setUserData} = useContext(UserContext)
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
