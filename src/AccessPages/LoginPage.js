@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Form, StyledLink } from "./style";
+import { Form, Container, StyledLink } from "./styles";
 
 import logo from "../assets/logo.svg";
 
@@ -7,7 +7,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleLogin() {}
+  function handleLogin(e) {
+    e.preventDefault()
+  }
 
   return (
     <Container>
@@ -27,10 +29,7 @@ export default function LoginPage() {
         />
         <button type="submit"> Entrar </button>
       </Form>
-      <StyledLink to="/cadastro">
-        Não tem uma conta? Cadastre-se!
-      </StyledLink>
+      <StyledLink to="/cadastro">Não tem uma conta? Cadastre-se!</StyledLink>
     </Container>
   );
 }
-

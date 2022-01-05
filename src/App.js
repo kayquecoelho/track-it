@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./LoginPage";
-import SignUpPage from "./SignUpPage";
+import LoginPage from "./AccessPages/LoginPage";
+import SignUpPage from "./AccessPages/SignUpPage";
 
-import "./css/reset.css"
+import "./styles/reset.css"
 
 export default function App() {
+  
   return (
     <BrowserRouter>
       <Routes>

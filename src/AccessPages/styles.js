@@ -66,5 +66,7 @@ const Form = styled.form`
 `;
 
 export {
-    StyledLink, Container, Form
+    Form,
+    StyledLink, 
+    Container
 }
