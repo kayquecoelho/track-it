@@ -1,39 +1,62 @@
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Container, StyledLink } from "./styles";
 
 import logo from "../../assets/logo.svg";
 import Loading from "../Loading/Loading";
 
-export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function LoginPage({ setUserData, userData }) {
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
   const [disabled, setDisabled] = useState(false);
 
-  function handleLogin(e) {
+  function handleSubmit(e) {
     e.preventDefault();
+    setDisabled(true);
 
-    setDisabled(!disabled);
+    const promise = axios.post(
+      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
+      loginData
+    );
+    promise.then((response) => {
+      setUserData({...userData, ...response.data});
+      navigate("/hoje");
+    });
+    promise.catch((error) => {
+      alert(error.response.data.message);
+      setDisabled(false);
+    });
+  }
+
+  function handleInputChange(e) {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
 
   return (
     <Container>
       <img className="logo" src={logo} alt="TrackIt" />
-      <Form onSubmit={handleLogin} disabled={disabled}>
+      <Form onSubmit={handleSubmit} disabled={disabled}>
         <input
           required
           disabled={disabled}
           type="email"
+          name="email"
           placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={loginData.email}
+          onChange={handleInputChange}
         />
         <input
           required
           disabled={disabled}
           type="password"
           placeholder="senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          value={loginData.password}
+          onChange={handleInputChange}
         />
         <button disabled={disabled} type="submit">
           {!disabled && "Entrar"}
