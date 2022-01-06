@@ -7,22 +7,22 @@ export default function Loading({disabled}) {
       <Loader
         type="Rings"
         color="#FFFFFF"
-        height={40}
-        width={40}
+        height={30}
+        width={30}
         visible={disabled}
       />
       <Loader
         type="Rings"
         color="#FFFFFF"
-        height={40}
-        width={40}
+        height={30}
+        width={30}
         visible={disabled}
       />
       <Loader
         type="Rings"
         color="#FFFFFF"
-        height={40}
-        width={40}
+        height={30}
+        width={30}
         visible={disabled}
       />
     </>

@@ -6,6 +6,7 @@ import UserContext from "./Components/Contexts/UserContext";
 import "./styles/reset.css";
 import Top from "./Components/Top";
 import Menu from "./Components/Menu";
+import MyHomePage from "./Components/MyHomePage";
 
 export default function App() {
   const [userData, setUserData] = useState({});
@@ -18,7 +19,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/cadastro" element={<SignUpPage />} />
-          <Route path="/habitos" />
+          <Route path="/habitos" element={<MyHomePage />} />
           <Route path="/hoje" />
           <Route path="/historico" />
         </Routes>
