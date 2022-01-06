@@ -1,16 +1,42 @@
+import { useState } from "react";
 import styled from "styled-components";
 import plusSign from "../../assets/plus.svg";
 import AddHabit from "../AddHabit";
+import Habits from "../Habits";
+
 export default function MyHomePage() {
+  const [isAddingHabit, setIsAddingHabit] = useState(false);
+  const [habitName, setHabitName] = useState("");
+  const [habitDays, setHabitDays] = useState([]);
+  const [addedHabit, setAddedHabit] = useState({});
+
+  function openAddSection() {
+    setIsAddingHabit(true);
+  }
+
   return (
     <Container>
       <TitleSection>
         <div className="title">Meus Hábitos</div>
-        <button className="addHabit">
+        <button className="addHabit" onClick={openAddSection}>
           <img src={plusSign} alt="+" />
         </button>
       </TitleSection>
-      <AddHabit />
+
+      {isAddingHabit && (
+        <AddHabit
+          data={{
+            habitName,
+            setHabitName,
+            habitDays,
+            setHabitDays,
+            setIsAddingHabit,
+            setAddedHabit,
+          }}
+        />
+      )}
+
+      <Habits addedHabit={addedHabit}></Habits>
     </Container>
   );
 }
@@ -18,13 +44,20 @@ export default function MyHomePage() {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  
+
+  overflow: scroll;
   padding: 90px 18px 110px;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   background-color: #e5e5e5;
 `;
 const TitleSection = styled.div`
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
   display: flex;
   justify-content: space-between;

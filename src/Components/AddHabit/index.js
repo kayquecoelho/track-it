@@ -5,10 +5,10 @@ import { Day, Container, ButtonSection, Week } from "./style";
 import Loading from "../Loading/Loading";
 import UserContext from "../Contexts/UserContext";
 
-export default function AddHabit() {
+export default function AddHabit({
+  data: { setIsAddingHabit, habitName, habitDays, setHabitDays, setHabitName, setAddedHabit },
+}) {
   const { userData } = useContext(UserContext);
-  const [habitName, setHabitName] = useState("");
-  const [habitDays, setHabitDays] = useState([]);
   const [disabled, setDisabled] = useState(false);
 
   function selectDay(e) {
@@ -36,11 +36,21 @@ export default function AddHabit() {
         },
       }
     );
-    promise.then((response) => console.log(response));
+    promise.then((response) => {
+      setDisabled(false);
+      setHabitDays([]);
+      setHabitName("");
+      setIsAddingHabit(false)
+      setAddedHabit(response.data)
+    });
     promise.catch((error) => {
       alert(error.response.data.message);
       setDisabled(false);
     });
+  }
+
+  function closeAddSection() {
+    setIsAddingHabit(false);
   }
 
   return (
@@ -111,7 +121,11 @@ export default function AddHabit() {
         </Day>
       </Week>
       <ButtonSection disabled={disabled}>
-        <button className="cancel" disabled={disabled}>
+        <button
+          className="cancel"
+          disabled={disabled}
+          onClick={closeAddSection}
+        >
           Cancelar
         </button>
         <button className="save" onClick={registrateHabit} disabled={disabled}>
