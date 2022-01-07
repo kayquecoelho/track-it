@@ -11,9 +11,11 @@ import TodaysHabitsPage from "./Components/TodaysHabits";
 
 export default function App() {
   const [userData, setUserData] = useState({});
+  const [progress, setProgress] = useState(0)
+  const [numOfHabits, setNumOfHabits] = useState(0);
 
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
+    <UserContext.Provider value={{ userData, setUserData, progress, setProgress, numOfHabits, setNumOfHabits }}>
       <BrowserRouter>
         <Top></Top>
         <Menu></Menu>

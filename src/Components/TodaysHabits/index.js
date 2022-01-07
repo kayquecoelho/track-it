@@ -1,25 +1,25 @@
+import dayjs from "dayjs";
+import "dayjs/locale/pt-br";
 import axios from "axios";
 import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import UserContext from "../Contexts/UserContext";
 import check from "../../assets/check.svg";
 
-import dayjs from "dayjs";
-import "dayjs/locale/pt-br";
-
 export default function TodaysHabitsPage() {
-  const { userData } = useContext(UserContext);
+  const { userData, progress, setProgress, setNumOfHabits, numOfHabits } =
+    useContext(UserContext);
   const [habits, setHabits] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
-  
+
   const updateLocale = require("dayjs/plugin/updateLocale");
   dayjs.extend(updateLocale);
   dayjs.updateLocale("pt-br", {
     weekdays: "Domingo,Segunda,Terça,Quarta,Quinta,Sexta,Sábado".split(","),
   });
   dayjs.locale("pt-br");
-  
-  const now = dayjs().locale("pt-br").format("dddd, DD/MM")
+
+  const now = dayjs().locale("pt-br").format("dddd, DD/MM");
 
   useEffect(() => {
     const promise = axios.get(
@@ -32,25 +32,42 @@ export default function TodaysHabitsPage() {
     );
 
     promise.then((response) => {
+      const doneHabits = response.data.filter((habit) => habit.done);
+      console.log(doneHabits);
       setHabits(response.data);
+      setNumOfHabits(response.data.length);
+      setProgress(doneHabits.length);
     });
     promise.catch((error) => console.log(error.response));
   }, [isChecked]);
 
   if (habits === null || habits.length === 0) {
-    return null;
+    return (
+      <Container>
+        <WeekDay>{now}</WeekDay>
+        <Status progress={0}>Nenhum hábito concluído ainda</Status>
+      </Container>
+    );
   }
 
   return (
     <Container>
       <WeekDay>{now}</WeekDay>
-      <Status>Nenhum hábito concluído ainda</Status>
+      <Status progress={progress / numOfHabits}>
+        {progress / numOfHabits === 0 && "Nenhum hábito concluído ainda"}
+        {progress / numOfHabits !== 0 &&
+          `${Math.floor(
+            (progress / numOfHabits) * 100
+          )}% dos hábitos concluídos`}
+      </Status>
       {habits.map((h) => (
         <ToDoHabit
           key={h.id}
           {...h}
           isChecked={isChecked}
           setIsChecked={setIsChecked}
+          setProgress={setProgress}
+          progress={progress}
         />
       ))}
     </Container>
@@ -131,13 +148,11 @@ const WeekDay = styled.div`
   line-height: 29px;
 `;
 const Status = styled.div`
+  color: ${(props) => props.progress !== 0 ? "#8FC549": "#bababa"};
   font-size: 18px;
   line-height: 22px;
 
   margin-bottom: 28px;
-
-  color: #bababa;
-  /* color: #8FC549; */
 `;
 
 const Container = styled.div`
