@@ -66,7 +66,7 @@ export default function AddHabit({
         <Day
           habitDays={habitDays}
           disabled={disabled}
-          id="1"
+          id="0"
           onClick={selectDay}
         >
           D
@@ -74,7 +74,7 @@ export default function AddHabit({
         <Day
           habitDays={habitDays}
           disabled={disabled}
-          id="2"
+          id="1"
           onClick={selectDay}
         >
           S
@@ -82,10 +82,18 @@ export default function AddHabit({
         <Day
           habitDays={habitDays}
           disabled={disabled}
-          id="3"
+          id="2"
           onClick={selectDay}
         >
           T
+        </Day>
+        <Day
+          habitDays={habitDays}
+          disabled={disabled}
+          id="3"
+          onClick={selectDay}
+        >
+          Q
         </Day>
         <Day
           habitDays={habitDays}
@@ -101,20 +109,12 @@ export default function AddHabit({
           id="5"
           onClick={selectDay}
         >
-          Q
-        </Day>
-        <Day
-          habitDays={habitDays}
-          disabled={disabled}
-          id="6"
-          onClick={selectDay}
-        >
           S
         </Day>
         <Day
           habitDays={habitDays}
           disabled={disabled}
-          id="7"
+          id="6"
           onClick={selectDay}
         >
           S
