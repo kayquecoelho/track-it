@@ -7,10 +7,10 @@ import "./styles/reset.css";
 import Top from "./Components/Top";
 import Menu from "./Components/Menu";
 import MyHomePage from "./Components/MyHomePage";
+import TodaysHabitsPage from "./Components/TodaysHabits";
 
 export default function App() {
   const [userData, setUserData] = useState({});
-  
 
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/cadastro" element={<SignUpPage />} />
           <Route path="/habitos" element={<MyHomePage />} />
-          <Route path="/hoje" />
+          <Route path="/hoje" element={<TodaysHabitsPage />} />
           <Route path="/historico" />
         </Routes>
       </BrowserRouter>

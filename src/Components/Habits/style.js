@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 const Container = styled.div`
   max-width: 345px;
-  height: 91px;
+  min-height: 91px;
 
   margin-bottom: 10px;
-  padding: 13px;
+  padding: 13px 20px 13px 13px;
 
   position: relative;
 
@@ -43,8 +43,6 @@ const Week = styled.div`
 const Day = styled.div`
   width: 30px;
   height: 30px;
-
-  margin-bottom: 30px;
 
   display: flex;
   justify-content: center;
