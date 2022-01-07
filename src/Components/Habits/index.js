@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
-import UserContext from "../Contexts/UserContext";
 import { Container, Week, Day, Message, HabitName } from "./style";
 
-export default function Habits({ addedHabit}) {
+import UserContext from "../Contexts/UserContext";
+
+export default function Habits({ addedHabit }) {
   const [userHabits, setUserHabits] = useState([]);
   const { userData } = useContext(UserContext);
   const [isDeleted, setIsDeleted] = useState(false);

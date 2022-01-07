@@ -6,7 +6,14 @@ import Loading from "../Loading/Loading";
 import UserContext from "../Contexts/UserContext";
 
 export default function AddHabit({
-  data: { setIsAddingHabit, habitName, habitDays, setHabitDays, setHabitName, setAddedHabit },
+  data: {
+    setIsAddingHabit,
+    habitName,
+    habitDays,
+    setHabitDays,
+    setHabitName,
+    setAddedHabit,
+  },
 }) {
   const { userData } = useContext(UserContext);
   const [disabled, setDisabled] = useState(false);
@@ -40,8 +47,8 @@ export default function AddHabit({
       setDisabled(false);
       setHabitDays([]);
       setHabitName("");
-      setIsAddingHabit(false)
-      setAddedHabit(response.data)
+      setIsAddingHabit(false);
+      setAddedHabit(response.data);
     });
     promise.catch((error) => {
       alert(error.response.data.message);
