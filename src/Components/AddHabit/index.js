@@ -66,64 +66,21 @@ export default function AddHabit({
         value={habitName}
         onChange={(e) => setHabitName(e.target.value)}
       />
+      
       <Week>
-        <Day
-          habitDays={habitDays}
-          disabled={disabled}
-          id="0"
-          onClick={selectDay}
-        >
-          D
-        </Day>
-        <Day
-          habitDays={habitDays}
-          disabled={disabled}
-          id="1"
-          onClick={selectDay}
-        >
-          S
-        </Day>
-        <Day
-          habitDays={habitDays}
-          disabled={disabled}
-          id="2"
-          onClick={selectDay}
-        >
-          T
-        </Day>
-        <Day
-          habitDays={habitDays}
-          disabled={disabled}
-          id="3"
-          onClick={selectDay}
-        >
-          Q
-        </Day>
-        <Day
-          habitDays={habitDays}
-          disabled={disabled}
-          id="4"
-          onClick={selectDay}
-        >
-          Q
-        </Day>
-        <Day
-          habitDays={habitDays}
-          disabled={disabled}
-          id="5"
-          onClick={selectDay}
-        >
-          S
-        </Day>
-        <Day
-          habitDays={habitDays}
-          disabled={disabled}
-          id="6"
-          onClick={selectDay}
-        >
-          S
-        </Day>
+        {weekDays.map((d, index) => (
+          <Day
+            key={index}
+            habitDays={habitDays}
+            disabled={disabled}
+            id={`${index}`}
+            onClick={selectDay}
+          >
+            {d}
+          </Day>
+        ))}
       </Week>
+
       <ButtonSection disabled={disabled}>
         <button
           className="cancel"
@@ -132,6 +89,7 @@ export default function AddHabit({
         >
           Cancelar
         </button>
+
         <button className="save" onClick={registrateHabit} disabled={disabled}>
           {!disabled && "Salvar"}
           {disabled && <Loading />}
@@ -140,5 +98,3 @@ export default function AddHabit({
     </Container>
   );
 }
-
-function DayInput() {}

@@ -68,25 +68,25 @@ function Habit({ name, days, id, data: { setIsDeleted, isDeleted } }) {
     <Container>
       <HabitName>{name}</HabitName>
       <Week>
-        <Day habitDays={days} id={1}>
+        <Day habitDays={days} id={0}>
           D
         </Day>
-        <Day habitDays={days} id={2}>
+        <Day habitDays={days} id={1}>
           S
         </Day>
-        <Day habitDays={days} id={3}>
+        <Day habitDays={days} id={2}>
           T
+        </Day>
+        <Day habitDays={days} id={3}>
+          Q
         </Day>
         <Day habitDays={days} id={4}>
           Q
         </Day>
         <Day habitDays={days} id={5}>
-          Q
-        </Day>
-        <Day habitDays={days} id={6}>
           S
         </Day>
-        <Day habitDays={days} id={7}>
+        <Day habitDays={days} id={6}>
           S
         </Day>
       </Week>

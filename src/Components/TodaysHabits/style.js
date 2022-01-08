@@ -42,6 +42,7 @@ const HabitBox = styled.div`
 
   background-color: #ffffff;
   color: #666666;
+  word-break: break-all;
 `;
 
 const Title = styled.div`
@@ -49,6 +50,7 @@ const Title = styled.div`
   line-height: 25px;
 
   margin-bottom: 7px;
+  margin-right: 20px;
 `;
 const Streak = styled.div`
   font-size: 13px;

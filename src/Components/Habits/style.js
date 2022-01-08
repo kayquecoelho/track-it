@@ -12,6 +12,8 @@ const Container = styled.div`
   background-color: #FFFFFF;
   border-radius: 5px;
 
+  word-break: break-all;
+  
   button {
     ion-icon {
       color: #666666;
@@ -28,6 +30,7 @@ const Container = styled.div`
 `;
 
 const HabitName = styled.div`
+  margin-right: 20px;
   margin-bottom: 8px; 
 
   color: #666666;
