@@ -17,6 +17,7 @@ export default function AddHabit({
 }) {
   const { userData } = useContext(UserContext);
   const [disabled, setDisabled] = useState(false);
+  const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   function selectDay(e) {
     if (disabled) return;
@@ -54,10 +55,6 @@ export default function AddHabit({
       alert(error.response.data.message);
       setDisabled(false);
     });
-  }
-
-  function closeAddSection() {
-    setIsAddingHabit(false);
   }
 
   return (
@@ -131,7 +128,7 @@ export default function AddHabit({
         <button
           className="cancel"
           disabled={disabled}
-          onClick={closeAddSection}
+          onClick={() => setIsAddingHabit(false)}
         >
           Cancelar
         </button>
@@ -143,3 +140,5 @@ export default function AddHabit({
     </Container>
   );
 }
+
+function DayInput() {}

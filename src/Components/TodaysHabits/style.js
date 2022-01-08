@@ -67,10 +67,7 @@ const LongestStreak = styled.div`
   margin-bottom: 5px;
 
   span {
-    color: ${(props) =>
-      props.done && props.highestSequence === props.currentSequence
-        ? "#8FC549"
-        : "#666666"};
+    color: ${(props) => (props.done && props.isEqual ? "#8FC549" : "#666666")};
   }
 `;
 

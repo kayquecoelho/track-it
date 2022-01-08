@@ -5,7 +5,7 @@ import "./styles/reset.css";
 import Top from "./Components/Top";
 import Menu from "./Components/Menu";
 import MyHomePage from "./Components/MyHomePage";
-import TodaysHabitsPage from "./Components/TodaysHabits";
+import TodaysHabitsPage from "./Components/TodaysHabits/TodaysHabitsPage";
 import LoginPage from "./Components/AccessPages/LoginPage";
 import SignUpPage from "./Components/AccessPages/SignUpPage";
 import UserContext from "./Components/Contexts/UserContext";
