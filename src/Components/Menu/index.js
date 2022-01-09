@@ -11,7 +11,8 @@ import UserContext from "../Contexts/UserContext";
 
 export default function Menu() {
   const { progress, numOfHabits } = useContext(UserContext);
-
+  const location = useLocation();
+  
   let percentage;
 
   if (numOfHabits === 0) {
@@ -20,7 +21,6 @@ export default function Menu() {
     percentage = progress / numOfHabits;
   }
 
-  const location = useLocation();
 
   if (location.pathname === "/" || location.pathname === "/cadastro") {
     return null;

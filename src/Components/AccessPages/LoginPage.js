@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Container, StyledLink } from "./styles";
 
@@ -8,14 +8,22 @@ import Loading from "../Loading/Loading";
 import UserContext from "../Contexts/UserContext";
 
 export default function LoginPage() {
-  const {userData, setUserData} = useContext(UserContext)
+  const { setAndPersistToken, setUserData } = useContext(UserContext);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(false);
+  const localData = localStorage.getItem("userData");
 
+  useEffect(() => {
+    if (localData !== null) {
+      setUserData(JSON.parse(localData));
+      navigate("/hoje");
+    }
+  }, []);
+  
   function handleSubmit(e) {
     e.preventDefault();
     setDisabled(true);
@@ -25,7 +33,7 @@ export default function LoginPage() {
       loginData
     );
     promise.then((response) => {
-      setUserData({...userData, ...response.data});
+      setAndPersistToken(response.data);
       navigate("/hoje");
     });
     promise.catch((error) => {

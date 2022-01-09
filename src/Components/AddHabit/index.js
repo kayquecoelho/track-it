@@ -12,10 +12,9 @@ export default function AddHabit({
     habitDays,
     setHabitDays,
     setHabitName,
-    setAddedHabit,
   },
 }) {
-  const { userData } = useContext(UserContext);
+  const { userData, setControlRender, controlRender } = useContext(UserContext);
   const [disabled, setDisabled] = useState(false);
   const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
@@ -44,12 +43,12 @@ export default function AddHabit({
         },
       }
     );
-    promise.then((response) => {
+    promise.then(() => {
       setDisabled(false);
       setHabitDays([]);
       setHabitName("");
       setIsAddingHabit(false);
-      setAddedHabit(response.data);
+      setControlRender(!controlRender);
     });
     promise.catch((error) => {
       alert(error.response.data.message);

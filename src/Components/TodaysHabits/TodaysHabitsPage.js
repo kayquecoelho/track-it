@@ -8,7 +8,7 @@ import UserContext from "../Contexts/UserContext";
 import ToDoHabit from "./ToDoHabit";
 
 export default function TodaysHabitsPage() {
-  const { userData, progress, setProgress, setNumOfHabits, numOfHabits } =
+  const { userData, progress, setProgress, setNumOfHabits, numOfHabits, controlRender } =
     useContext(UserContext);
   const [habits, setHabits] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
@@ -41,7 +41,7 @@ export default function TodaysHabitsPage() {
       setProgress(doneHabits.length);
     });
     promise.catch((error) => console.log(error.response));
-  }, [isChecked]);
+  }, [isChecked, userData, controlRender]);
 
   if (habits === null || habits.length === 0) {
     return (

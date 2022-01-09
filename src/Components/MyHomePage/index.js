@@ -9,7 +9,6 @@ export default function MyHomePage() {
   const [isAddingHabit, setIsAddingHabit] = useState(false);
   const [habitName, setHabitName] = useState("");
   const [habitDays, setHabitDays] = useState([]);
-  const [addedHabit, setAddedHabit] = useState({});
 
   function openAddSection() {
     setIsAddingHabit(true);
@@ -32,12 +31,11 @@ export default function MyHomePage() {
             habitDays,
             setHabitDays,
             setIsAddingHabit,
-            setAddedHabit,
           }}
         />
       )}
 
-      <Habits addedHabit={addedHabit}></Habits>
+      <Habits></Habits>
     </Container>
   );
 }

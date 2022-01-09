@@ -4,10 +4,9 @@ import { Container, Week, Day, Message, HabitName } from "./style";
 
 import UserContext from "../Contexts/UserContext";
 
-export default function Habits({ addedHabit }) {
+export default function Habits() {
   const [userHabits, setUserHabits] = useState([]);
-  const { userData } = useContext(UserContext);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const { userData, controlRender } = useContext(UserContext);
 
   useEffect(() => {
     const promise = axios.get(
@@ -21,7 +20,7 @@ export default function Habits({ addedHabit }) {
 
     promise.then((response) => setUserHabits(response.data));
     promise.catch((error) => console.log(error.response));
-  }, [addedHabit, isDeleted]);
+  }, [controlRender, userData]);
 
   if (userHabits.length === 0) {
     return (
@@ -35,14 +34,14 @@ export default function Habits({ addedHabit }) {
   return (
     <>
       {userHabits.map((h) => (
-        <Habit key={h.id} {...h} data={{ setIsDeleted, isDeleted }} />
+        <Habit key={h.id} {...h} />
       ))}
     </>
   );
 }
 
-function Habit({ name, days, id, data: { setIsDeleted, isDeleted } }) {
-  const { userData } = useContext(UserContext);
+function Habit({ name, days, id,}) {
+  const { userData, controlRender, setControlRender } = useContext(UserContext);
 
   function deleteHabit() {
     if (
@@ -56,10 +55,7 @@ function Habit({ name, days, id, data: { setIsDeleted, isDeleted } }) {
           },
         }
       );
-      promise.then((response) => {
-        console.log(response);
-        setIsDeleted(!isDeleted);
-      });
+      promise.then(() => setControlRender(!controlRender));
       promise.catch((error) => console.log(error.response));
     }
   }

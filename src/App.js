@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./styles/reset.css";
 
 import Top from "./Components/Top";
@@ -15,6 +15,19 @@ export default function App() {
   const [userData, setUserData] = useState({});
   const [progress, setProgress] = useState(0);
   const [numOfHabits, setNumOfHabits] = useState(0);
+  const [controlRender, setControlRender] = useState(false)
+  const localData = localStorage.getItem("userData")
+  
+  useEffect(() => {
+    if (localData !== null) {
+      setUserData(JSON.parse(localData))
+    }
+  }, [])
+
+  function setAndPersistToken (data) {
+    setUserData(data)
+    localStorage.setItem("userData", JSON.stringify(data))
+  }
 
   return (
     <UserContext.Provider
@@ -25,6 +38,9 @@ export default function App() {
         setProgress,
         numOfHabits,
         setNumOfHabits,
+        setAndPersistToken,
+        controlRender,
+        setControlRender
       }}
     >
       <BrowserRouter>
