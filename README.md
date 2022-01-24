@@ -1,8 +1,9 @@
-### TrackIt
+# TrackIt
 
 A habits tracking app written in React that allows you to improve your discipline!
+Try it out now : <a href="track-it-eta.vercel.app"> track-it-eta.vercel.app </a>
 
-### About
+# About
 
 It's a web application designed for mobile devices. You can create an account and start to manage your habits daily!
 
@@ -18,7 +19,7 @@ New features soon!
 
 - Verify your habits history
 
-### Technologies
+# Technologies
 
 The following tools and frameworks were used to create the app
 
@@ -29,7 +30,7 @@ The following tools and frameworks were used to create the app
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
 <p>
 
-### How to run
+# How to run
 
 1. Clone this repository
 2. Install dependecies with npm
