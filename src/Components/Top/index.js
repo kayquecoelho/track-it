@@ -6,9 +6,9 @@ import UserContext from "../Contexts/UserContext";
 
 export default function Top() {
   const { userData } = useContext(UserContext);
-  const location = useLocation();
+  const { pathname } = useLocation();
 
-  if (location.pathname === "/" || location.pathname === "/cadastro") {
+  if (pathname === "/" || pathname === "/cadastro") {
     return null;
   }
 

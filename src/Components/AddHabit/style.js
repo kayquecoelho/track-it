@@ -66,7 +66,7 @@ const Week = styled.div`
   gap: 5px;
 `;
 
-const Day = styled.div`
+const Day = styled.button`
   width: 30px;
   height: 30px;
 
@@ -97,4 +97,4 @@ const Day = styled.div`
   }
 `;
 
-export {Day, Week, Container, ButtonSection}
+export { Day, Week, Container, ButtonSection };

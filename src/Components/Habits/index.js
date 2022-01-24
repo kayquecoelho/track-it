@@ -40,8 +40,9 @@ export default function Habits() {
   );
 }
 
-function Habit({ name, days, id,}) {
+function Habit({ name, days, id }) {
   const { userData, controlRender, setControlRender } = useContext(UserContext);
+  const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   function deleteHabit() {
     if (
@@ -64,27 +65,11 @@ function Habit({ name, days, id,}) {
     <Container>
       <HabitName>{name}</HabitName>
       <Week>
-        <Day habitDays={days} id={0}>
-          D
-        </Day>
-        <Day habitDays={days} id={1}>
-          S
-        </Day>
-        <Day habitDays={days} id={2}>
-          T
-        </Day>
-        <Day habitDays={days} id={3}>
-          Q
-        </Day>
-        <Day habitDays={days} id={4}>
-          Q
-        </Day>
-        <Day habitDays={days} id={5}>
-          S
-        </Day>
-        <Day habitDays={days} id={6}>
-          S
-        </Day>
+        {weekdays.map((day, index) => (
+          <Day habitDays={days} id={index}>
+            {day}
+          </Day>
+        ))}
       </Week>
       <button onClick={deleteHabit}>
         <ion-icon name="trash-outline"></ion-icon>

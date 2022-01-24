@@ -6,21 +6,13 @@ import Loading from "../Loading/Loading";
 import UserContext from "../Contexts/UserContext";
 
 export default function AddHabit({
-  data: {
-    setIsAddingHabit,
-    habitName,
-    habitDays,
-    setHabitDays,
-    setHabitName,
-  },
+  data: { setIsAddingHabit, habitName, habitDays, setHabitDays, setHabitName },
 }) {
   const { userData, setControlRender, controlRender } = useContext(UserContext);
-  const [disabled, setDisabled] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
   const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   function selectDay(e) {
-    if (disabled) return;
-
     if (habitDays.includes(e.target.id)) {
       const newHabitDays = habitDays.filter((day) => day !== e.target.id);
       setHabitDays(newHabitDays);
@@ -33,7 +25,7 @@ export default function AddHabit({
   function registrateHabit() {
     if (habitName === "" || habitDays.length === 0) return;
 
-    setDisabled(true);
+    setDisableButton(true);
     const promise = axios.post(
       "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
       { name: habitName, days: habitDays },
@@ -44,7 +36,7 @@ export default function AddHabit({
       }
     );
     promise.then(() => {
-      setDisabled(false);
+      setDisableButton(false);
       setHabitDays([]);
       setHabitName("");
       setIsAddingHabit(false);
@@ -52,26 +44,26 @@ export default function AddHabit({
     });
     promise.catch((error) => {
       alert(error.response.data.message);
-      setDisabled(false);
+      setDisableButton(false);
     });
   }
 
   return (
-    <Container disabled={disabled}>
+    <Container disabled={disableButton}>
       <input
         type="text"
         className="habitName"
-        disabled={disabled}
+        disabled={disableButton}
         value={habitName}
         onChange={(e) => setHabitName(e.target.value)}
       />
-      
+
       <Week>
         {weekDays.map((d, index) => (
           <Day
             key={index}
             habitDays={habitDays}
-            disabled={disabled}
+            disabled={disableButton}
             id={`${index}`}
             onClick={selectDay}
           >
@@ -80,18 +72,22 @@ export default function AddHabit({
         ))}
       </Week>
 
-      <ButtonSection disabled={disabled}>
+      <ButtonSection disabled={disableButton}>
         <button
           className="cancel"
-          disabled={disabled}
+          disabled={disableButton}
           onClick={() => setIsAddingHabit(false)}
         >
           Cancelar
         </button>
 
-        <button className="save" onClick={registrateHabit} disabled={disabled}>
-          {!disabled && "Salvar"}
-          {disabled && <Loading />}
+        <button
+          className="save"
+          onClick={registrateHabit}
+          disabled={disableButton}
+        >
+          {!disableButton && "Salvar"}
+          {disableButton && <Loading />}
         </button>
       </ButtonSection>
     </Container>
